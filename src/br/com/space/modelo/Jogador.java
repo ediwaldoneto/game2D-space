@@ -2,8 +2,11 @@ package br.com.space.modelo;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 public class Jogador {
 
@@ -11,12 +14,14 @@ public class Jogador {
 	private int dx, dy;
 	private Image imgJogador;
 	private int largura, altura;
+	private List<Tiro> tiros;
 
 	public Jogador() {
 
 		// Inicializando posicao do jogador
 		this.x = 100;
 		this.y = 100;
+		tiros = new ArrayList<Tiro>();
 	}
 
 	public void load() {
@@ -25,8 +30,8 @@ public class Jogador {
 		ImageIcon img = new ImageIcon("res\\jogador.png");
 		imgJogador = img.getImage();
 
-		altura = imgJogador.getHeight(null);
-		largura = imgJogador.getWidth(null);
+		this.altura = imgJogador.getHeight(null);
+		this.largura = imgJogador.getWidth(null);
 	}
 
 	public void update() {
@@ -34,12 +39,17 @@ public class Jogador {
 		y += dy;
 	}
 
+	public void tiro() {
+
+		this.tiros.add(new Tiro(x + largura, y + (altura / 2)));
+	}
+
 	public void keypressed(KeyEvent event) {
 
 		int evento = event.getKeyCode();
-		
+
 		System.out.println("Jogador.keypressed() ->  " + event.getExtendedKeyCode());
-		
+
 		if (evento == KeyEvent.VK_UP) {
 			dy = -3;
 		}
@@ -52,14 +62,25 @@ public class Jogador {
 		if (evento == KeyEvent.VK_RIGHT) {
 			dx = 3;
 		}
+
+		// ACAO DE TIRO
+		if (evento == KeyEvent.VK_T) {
+
+			tiro();
+		}
+		
+		if (evento == KeyEvent.VK_Q) {
+
+			JFrame frame = new JFrame();
+
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
 	}
 
 	public void keyRelease(KeyEvent event) {
 
 		int evento = event.getKeyCode();
-		
-		System.out.println("Jogador.keyRelease() -> " + event.getExtendedKeyCode());
-		
+
 		if (evento == KeyEvent.VK_UP) {
 			dy = 0;
 		}
@@ -84,6 +105,10 @@ public class Jogador {
 
 	public Image getImgJogador() {
 		return imgJogador;
+	}
+
+	public List<Tiro> getTiros() {
+		return tiros;
 	}
 
 }
