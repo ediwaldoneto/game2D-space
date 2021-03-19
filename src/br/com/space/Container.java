@@ -3,7 +3,6 @@ package br.com.space;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
 import br.com.space.modelo.Fase;
-import br.com.space.util.CriaDebug;
 
 public class Container extends JFrame {
 
@@ -17,7 +16,6 @@ public class Container extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		CriaDebug.exibirDebug();
 		this.setVisible(true);
 
 	}
