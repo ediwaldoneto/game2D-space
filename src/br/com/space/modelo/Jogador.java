@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Jogador {
 
@@ -50,30 +50,27 @@ public class Jogador {
 
 		System.out.println("Jogador.keypressed() ->  " + event.getExtendedKeyCode());
 
-		if (evento == KeyEvent.VK_UP) {
+		if (evento == KeyEvent.VK_W) {
 			dy = -3;
 		}
-		if (evento == KeyEvent.VK_DOWN) {
+		if (evento == KeyEvent.VK_S) {
 			dy = 3;
 		}
-		if (evento == KeyEvent.VK_LEFT) {
+		if (evento == KeyEvent.VK_A) {
 			dx = -3;
 		}
-		if (evento == KeyEvent.VK_RIGHT) {
+		if (evento == KeyEvent.VK_D) {
 			dx = 3;
 		}
 
 		// ACAO DE TIRO
-		if (evento == KeyEvent.VK_T) {
+		if (evento == KeyEvent.VK_P) {
 
 			tiro();
 		}
-		
-		if (evento == KeyEvent.VK_Q) {
 
-			JFrame frame = new JFrame();
+		if (evento == KeyEvent.VK_F3) {
 
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 	}
 
@@ -81,16 +78,16 @@ public class Jogador {
 
 		int evento = event.getKeyCode();
 
-		if (evento == KeyEvent.VK_UP) {
+		if (evento == KeyEvent.VK_W) {
 			dy = 0;
 		}
-		if (evento == KeyEvent.VK_DOWN) {
+		if (evento == KeyEvent.VK_S) {
 			dy = 0;
 		}
-		if (evento == KeyEvent.VK_LEFT) {
+		if (evento == KeyEvent.VK_A) {
 			dx = 0;
 		}
-		if (evento == KeyEvent.VK_RIGHT) {
+		if (evento == KeyEvent.VK_D) {
 			dx = 0;
 		}
 	}
