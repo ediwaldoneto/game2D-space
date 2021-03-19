@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 public class Jogador {
 
@@ -50,27 +49,29 @@ public class Jogador {
 
 		System.out.println("Jogador.keypressed() ->  " + event.getExtendedKeyCode());
 
-		if (evento == KeyEvent.VK_W) {
+		if (evento == KeyEvent.VK_UP) {
 			dy = -3;
 		}
-		if (evento == KeyEvent.VK_S) {
+		if (evento == KeyEvent.VK_DOWN) {
 			dy = 3;
 		}
-		if (evento == KeyEvent.VK_A) {
+		if (evento == KeyEvent.VK_LEFT) {
 			dx = -3;
 		}
-		if (evento == KeyEvent.VK_D) {
+		if (evento == KeyEvent.VK_RIGHT) {
 			dx = 3;
 		}
 
 		// ACAO DE TIRO
-		if (evento == KeyEvent.VK_P) {
+		if (evento == KeyEvent.VK_SPACE) {
 
 			tiro();
 		}
 
 		if (evento == KeyEvent.VK_F3) {
 
+			//ToDo
+			// Implementar Menu de de opcoes
 		}
 	}
 
@@ -78,16 +79,16 @@ public class Jogador {
 
 		int evento = event.getKeyCode();
 
-		if (evento == KeyEvent.VK_W) {
+		if (evento == KeyEvent.VK_UP) {
 			dy = 0;
 		}
-		if (evento == KeyEvent.VK_S) {
+		if (evento == KeyEvent.VK_DOWN) {
 			dy = 0;
 		}
-		if (evento == KeyEvent.VK_A) {
+		if (evento == KeyEvent.VK_LEFT) {
 			dx = 0;
 		}
-		if (evento == KeyEvent.VK_D) {
+		if (evento == KeyEvent.VK_RIGHT) {
 			dx = 0;
 		}
 	}
