@@ -122,7 +122,7 @@ public class Fase extends JPanel implements ActionListener {
 				graphics2d.drawImage(in.getImagem(), in.getX(), in.getY(), this);
 			}
 		} else {
-			ImageIcon gameOver = new ImageIcon("res\\gameover.png");
+			ImageIcon gameOver = new ImageIcon("res\\gameOver.png");
 			graphics2d.drawImage(gameOver.getImage(), 0, 0, null);
 		}
 
