@@ -49,12 +49,12 @@ public class Fase extends JPanel implements ActionListener {
 
 	public void iniciarInimigos() {
 
-		int aux[] = new int[120];
+		int aux[] = new int[300];
 		this.inimigo = new ArrayList<Inimigo1>();
 
 		for (int i = 0; i < aux.length; i++) {
 			int x = (int) (Math.random() * 7025 + 1024);
-			int y = (int)((Math.random() * 768)  - (Math.random() * 768));
+			int y = (int)((Math.random() * 768)  - (Math.random() * 30));
 			inimigo.add(new Inimigo1(x, y));
 		}
 	}

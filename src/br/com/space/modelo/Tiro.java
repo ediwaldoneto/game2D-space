@@ -13,7 +13,7 @@ public class Tiro {
 	private boolean isVisivel;
 
 	private static final int LARGURA = 939;
-	private static final int VELOCIDADE = 2;
+	private static final int VELOCIDADE = 4;
 
 	public Tiro(int x, int y) {
 

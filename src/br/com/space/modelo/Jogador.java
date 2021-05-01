@@ -3,10 +3,14 @@ package br.com.space.modelo;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+
+import br.com.space.Container;
+
 
 public class Jogador {
 
@@ -45,14 +49,14 @@ public class Jogador {
 
 	public void tiro() {
 
-		this.tiros.add(new Tiro(x + largura, y + (altura / 3)));
+		this.tiros.add(new Tiro(x + largura, y + (altura / 4)));
 	}
 
 	public void keypressed(KeyEvent event) {
 
 		int evento = event.getKeyCode();
 
-		System.out.println("Jogador.keypressed() ->  " + event.getExtendedKeyCode());
+		// System.out.println("Jogador.keypressed() -> " + event.getExtendedKeyCode());
 
 		if (evento == KeyEvent.VK_UP) {
 			dy = -3;
@@ -74,9 +78,16 @@ public class Jogador {
 
 		if (evento == KeyEvent.VK_F3) {
 
-			// ToDo
-			// Implementar Menu de de opcoes
+			new Container().repaint();
 		}
+
+		if (evento == KeyEvent.VK_F4) {
+
+			Container frame = new Container();
+			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+
+		}
+
 	}
 
 	public void keyRelease(KeyEvent event) {
