@@ -1,6 +1,7 @@
 package br.com.space.modelo;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,23 +15,27 @@ public class Jogador {
 	private Image imgJogador;
 	private int largura, altura;
 	private List<Tiro> tiros;
+	private boolean isVisible;
 
 	public Jogador() {
 
-		// Inicializando posicao do jogador
 		this.x = 100;
 		this.y = 100;
 		tiros = new ArrayList<Tiro>();
+		isVisible = true;
 	}
 
 	public void load() {
 
-		// carregando img do jogador
 		ImageIcon img = new ImageIcon("res\\jogador.png");
 		imgJogador = img.getImage();
 
 		this.altura = imgJogador.getHeight(null);
 		this.largura = imgJogador.getWidth(null);
+	}
+
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, largura, altura);
 	}
 
 	public void update() {
@@ -40,7 +45,7 @@ public class Jogador {
 
 	public void tiro() {
 
-		this.tiros.add(new Tiro(x + largura, y + (altura / 2)));
+		this.tiros.add(new Tiro(x + largura, y + (altura / 3)));
 	}
 
 	public void keypressed(KeyEvent event) {
@@ -62,7 +67,6 @@ public class Jogador {
 			dx = 3;
 		}
 
-		// ACAO DE TIRO
 		if (evento == KeyEvent.VK_SPACE) {
 
 			tiro();
@@ -70,7 +74,7 @@ public class Jogador {
 
 		if (evento == KeyEvent.VK_F3) {
 
-			//ToDo
+			// ToDo
 			// Implementar Menu de de opcoes
 		}
 	}
@@ -107,6 +111,14 @@ public class Jogador {
 
 	public List<Tiro> getTiros() {
 		return tiros;
+	}
+
+	public boolean isVisible() {
+		return isVisible;
+	}
+
+	public void setVisible(boolean isVisible) {
+		this.isVisible = isVisible;
 	}
 
 }

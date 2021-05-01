@@ -1,6 +1,7 @@
 package br.com.space.modelo;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
@@ -19,6 +20,10 @@ public class Tiro {
 		this.x = x;
 		this.y = y;
 		this.isVisivel = true;
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, largura, altura);
 	}
 
 	public void load() {
@@ -61,5 +66,15 @@ public class Tiro {
 	public Image getImg() {
 		return img;
 	}
+
+	public int getLargura() {
+		return largura;
+	}
+
+	public int getAltura() {
+		return altura;
+	}
+	
+	
 
 }

@@ -1,7 +1,7 @@
 package br.com.space.modelo;
 
 import java.awt.Image;
-import java.util.ArrayList;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
@@ -12,7 +12,7 @@ public class Inimigo1 {
 	private int largura, altura;
 	private boolean isVisivel;
 
-	private static int VELOCIDADE = 1;
+	private static int VELOCIDADE = 4;
 
 	public Inimigo1(int x, int y) {
 		this.x = x;
@@ -27,6 +27,11 @@ public class Inimigo1 {
 		this.largura = imagem.getWidth(null);
 		this.altura = imagem.getHeight(null);
 	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, largura, altura);
+	}
+
 
 	public void update() {
 		this.x -= VELOCIDADE;
@@ -60,5 +65,15 @@ public class Inimigo1 {
 	public Image getImagem() {
 		return imagem;
 	}
+
+	public int getLargura() {
+		return largura;
+	}
+
+	public int getAltura() {
+		return altura;
+	}
+	
+	
 
 }
