@@ -78,7 +78,8 @@ public class Jogador {
 
 		if (evento == KeyEvent.VK_F3) {
 
-			new Container().repaint();
+			//new Container();
+			
 		}
 
 		if (evento == KeyEvent.VK_F4) {

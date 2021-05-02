@@ -2,7 +2,6 @@ package br.com.space;
 
 import java.awt.HeadlessException;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 import br.com.space.modelo.Fase;
 
@@ -14,7 +13,7 @@ public class Container extends JFrame {
 
 		add(new Fase());
 		this.setTitle("Space");
-		this.setSize(1020,720);
+		this.setSize(1020, 720);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -23,8 +22,9 @@ public class Container extends JFrame {
 	}
 
 	public static void main(String[] args) throws IOException {
-		
+
 		new Container();
+
 	}
 
 }

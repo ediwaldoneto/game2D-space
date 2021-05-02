@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import br.com.space.util.Manipulador;
 import br.com.space.util.TecladoAdapter;
 
 public class Fase extends JPanel implements ActionListener {
@@ -23,6 +24,9 @@ public class Fase extends JPanel implements ActionListener {
 	private Timer timer;
 	private List<Inimigo1> inimigo;
 	private boolean isGame;
+	private List<Nebula> nebulas;
+	private static final int INIMIGO = Manipulador.getValor("QUANTIDADE_INIMIGO");
+	private static final int NEBULA = Manipulador.getValor("QTD_NEBULA");
 
 	public Fase() {
 
@@ -34,32 +38,42 @@ public class Fase extends JPanel implements ActionListener {
 
 		jogador = new Jogador();
 		jogador.load();
-		
+
 		addKeyListener(new TecladoAdapter(this.jogador));
+
+		iniciarInimigos();
+		inicializaNebulas();
 
 		timer = new Timer(5, this);
 		timer.start();
 
-		iniciarInimigos();
 		isGame = true;
 
 	}
 
-	// Iniciando inimigos
-
 	public void iniciarInimigos() {
 
-		int aux[] = new int[300];
+		int aux[] = new int[INIMIGO];
 		this.inimigo = new ArrayList<Inimigo1>();
 
 		for (int i = 0; i < aux.length; i++) {
 			int x = (int) (Math.random() * 7025 + 1024);
-			int y = (int)((Math.random() * 768)  - (Math.random() * 30));
+			int y = (int) ((Math.random() * 768) - (Math.random() * 350));
 			inimigo.add(new Inimigo1(x, y));
 		}
 	}
 
-	// Verifica as colisao
+	public void inicializaNebulas() {
+
+		int coordenadas[] = new int[NEBULA];
+		this.nebulas = new ArrayList<Nebula>();
+
+		for (int i = 0; i < coordenadas.length; i++) {
+			int x = (int) (Math.random() * 7025 + 1024);
+			int y = (int) ((Math.random() * 768) - (Math.random() * 350));
+			nebulas.add(new Nebula(x, y));
+		}
+	}
 
 	public void verificaColisao() {
 
@@ -104,7 +118,12 @@ public class Fase extends JPanel implements ActionListener {
 		if (isGame) {
 
 			graphics2d.drawImage(background, 0, 0, null);
-			graphics2d.drawImage(jogador.getImgJogador(), jogador.getX(), jogador.getY(), this);
+
+			for (int j = 0; j < nebulas.size(); j++) {
+				Nebula n = nebulas.get(j);
+				n.load();
+				graphics2d.drawImage(n.getImagem(), n.getX(), n.getY(), this);
+			}
 
 			List<Tiro> tiros = jogador.getTiros();
 
@@ -114,6 +133,8 @@ public class Fase extends JPanel implements ActionListener {
 
 				graphics2d.drawImage(t.getImg(), t.getX(), t.getY(), this);
 			}
+
+			graphics2d.drawImage(jogador.getImgJogador(), jogador.getX(), jogador.getY(), this);
 
 			for (int o = 0; o < inimigo.size(); o++) {
 				Inimigo1 in = inimigo.get(o);
@@ -133,6 +154,15 @@ public class Fase extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		jogador.update();
+
+		for (int p = 0; p < nebulas.size(); p++) {
+			Nebula on = nebulas.get(p);
+			if (on.isVisivel()) {
+				on.update();
+			} else {
+				nebulas.remove(p);
+			}
+		}
 
 		List<Tiro> tiros = jogador.getTiros();
 

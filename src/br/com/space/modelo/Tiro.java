@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
+import br.com.space.util.Manipulador;
+
 public class Tiro {
 
 	private int x, y;
@@ -13,11 +15,11 @@ public class Tiro {
 	private boolean isVisivel;
 
 	private static final int LARGURA = 939;
-	private static final int VELOCIDADE = 4;
+	private static final int VELOCIDADE = Manipulador.getValor("VELOCIDADE_TIRO");
+ 
+   	public Tiro(int x, int y) {
 
-	public Tiro(int x, int y) {
-
-		this.x = x;
+	 	this.x = x;
 		this.y = y;
 		this.isVisivel = true;
 	}

@@ -1,41 +1,50 @@
 package br.com.space.modelo;
 
 import java.awt.Image;
-import java.awt.Rectangle;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 
 import br.com.space.util.Manipulador;
 
-public class Inimigo1 {
+public class Nebula {
 
 	private Image imagem;
 	private int x, y;
-	private int largura, altura;
+	@SuppressWarnings("unused")
+	private int altura, largura;
 	private boolean isVisivel;
 
-	private static int VELOCIDADE = Manipulador.getValor("VELOCIDADE_INIMIGO");
+	private static int VELOCIDADE = Manipulador.getValor("VELOCIDADE_NEBULA");
 
-	public Inimigo1(int x, int y) {
+	public Nebula(int x, int y) {
 		this.x = x;
 		this.y = y;
 		isVisivel = true;
 	}
 
 	public void load() {
-		ImageIcon referencia = new ImageIcon("res\\inimigo.png");
+		ImageIcon referencia = new ImageIcon("res\\Nebula2.png");
 		imagem = referencia.getImage();
 
 		this.largura = imagem.getWidth(null);
 		this.altura = imagem.getHeight(null);
-	}
 
-	public Rectangle getBounds() {
-		return new Rectangle(x, y, largura, altura);
 	}
 
 	public void update() {
-		this.x -= VELOCIDADE;
+		if (this.x < -(this.largura)) {
+			this.x = largura;
+			Random a = new Random();
+			int m = a.nextInt(500);
+			this.x = m + 1024;
+
+			Random r = new Random();
+			int n = r.nextInt(768);
+			this.y = n;
+		} else {
+			this.x -= VELOCIDADE;
+		}
 
 	}
 
@@ -65,14 +74,6 @@ public class Inimigo1 {
 
 	public Image getImagem() {
 		return imagem;
-	}
-
-	public int getLargura() {
-		return largura;
-	}
-
-	public int getAltura() {
-		return altura;
 	}
 
 }
