@@ -11,7 +11,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
+import br.com.space.maquina.StateGame;
 import br.com.space.util.Manipulador;
 import br.com.space.util.TecladoAdapter;
 
@@ -23,7 +23,6 @@ public class Fase extends JPanel implements ActionListener {
 	private Jogador jogador;
 	private Timer timer;
 	private List<Inimigo1> inimigo;
-	private boolean isGame;
 	private List<Nebula> nebulas;
 	private static final int INIMIGO = Manipulador.getValor("QUANTIDADE_INIMIGO");
 	private static final int NEBULA = Manipulador.getValor("QTD_NEBULA");
@@ -41,13 +40,12 @@ public class Fase extends JPanel implements ActionListener {
 
 		addKeyListener(new TecladoAdapter(this.jogador));
 
+		init();
 		iniciarInimigos();
 		inicializaNebulas();
 
 		timer = new Timer(5, this);
 		timer.start();
-
-		isGame = true;
 
 	}
 
@@ -57,7 +55,7 @@ public class Fase extends JPanel implements ActionListener {
 		this.inimigo = new ArrayList<Inimigo1>();
 
 		for (int i = 0; i < aux.length; i++) {
-			int x = (int) (Math.random() * 7025 + 1024);
+			int x = (int) (Math.random() * 5050 + 1050);
 			int y = (int) ((Math.random() * 768) - (Math.random() * 350));
 			inimigo.add(new Inimigo1(x, y));
 		}
@@ -88,7 +86,7 @@ public class Fase extends JPanel implements ActionListener {
 			if (nave.intersects(enemy)) {
 				jogador.setVisible(false);
 				ini.setVisivel(false);
-				isGame = false;
+				StateGame.fimDeJogo();
 			}
 		}
 
@@ -115,7 +113,7 @@ public class Fase extends JPanel implements ActionListener {
 
 		Graphics2D graphics2d = (Graphics2D) graphics;
 
-		if (isGame) {
+		if (StateGame.isEmJogo()) {
 
 			graphics2d.drawImage(background, 0, 0, null);
 
@@ -186,6 +184,11 @@ public class Fase extends JPanel implements ActionListener {
 		}
 		verificaColisao();
 		repaint();
+	}
+
+	public void init() {
+		StateGame.getIntance();
+		StateGame.inicializaJogo();
 	}
 
 }

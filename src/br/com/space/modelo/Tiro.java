@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 import br.com.space.util.Manipulador;
+import br.com.space.util.som.Audio;
 
 public class Tiro {
 
@@ -15,15 +16,18 @@ public class Tiro {
 	private boolean isVisivel;
 
 	private static final int LARGURA = 939;
-	private static final int VELOCIDADE = Manipulador.getValor("VELOCIDADE_TIRO");
- 
-   	public Tiro(int x, int y) {
+	private static int VELOCIDADE = Manipulador.getValor("VELOCIDADE_TIRO");
+	private static String PATH_AUDIO = "res\\som\\weaponfire.wav";
 
-	 	this.x = x;
+	public Tiro(int x, int y) {
+
+		this.x = x;
 		this.y = y;
 		this.isVisivel = true;
+		Audio.play(PATH_AUDIO, false, 0.8f);
+
 	}
-	
+
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, largura, altura);
 	}
@@ -42,6 +46,7 @@ public class Tiro {
 		this.x += VELOCIDADE;
 		if (this.x > LARGURA) {
 			isVisivel = false;
+
 		}
 	}
 
@@ -76,7 +81,5 @@ public class Tiro {
 	public int getAltura() {
 		return altura;
 	}
-	
-	
 
 }

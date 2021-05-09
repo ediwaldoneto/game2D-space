@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-
 import br.com.space.Container;
-
+import br.com.space.maquina.StateGame;
 
 public class Jogador {
 
@@ -56,8 +55,6 @@ public class Jogador {
 
 		int evento = event.getKeyCode();
 
-		// System.out.println("Jogador.keypressed() -> " + event.getExtendedKeyCode());
-
 		if (evento == KeyEvent.VK_UP) {
 			dy = -3;
 		}
@@ -72,14 +69,15 @@ public class Jogador {
 		}
 
 		if (evento == KeyEvent.VK_SPACE) {
-
-			tiro();
+			if (StateGame.isEmJogo()) {
+				tiro();
+			}
 		}
 
 		if (evento == KeyEvent.VK_F3) {
 
-			//new Container();
-			
+			// new Container();
+
 		}
 
 		if (evento == KeyEvent.VK_F4) {
