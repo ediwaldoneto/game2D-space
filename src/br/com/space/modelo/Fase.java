@@ -24,8 +24,8 @@ public class Fase extends JPanel implements ActionListener {
 	private Timer timer;
 	private List<Inimigo1> inimigo;
 	private List<Nebula> nebulas;
-	private static final int INIMIGO = Manipulador.getValor("QUANTIDADE_INIMIGO");
-	private static final int NEBULA = Manipulador.getValor("QTD_NEBULA");
+	private static int INIMIGO = Manipulador.getValor("QUANTIDADE_INIMIGO");
+	private static int NEBULA = Manipulador.getValor("QTD_NEBULA");
 
 	public Fase() {
 
@@ -41,11 +41,11 @@ public class Fase extends JPanel implements ActionListener {
 		addKeyListener(new TecladoAdapter(this.jogador));
 
 		init();
+		timer = new Timer(9, this);
+		timer.start();
+		
 		iniciarInimigos();
 		inicializaNebulas();
-
-		timer = new Timer(5, this);
-		timer.start();
 
 	}
 
@@ -54,11 +54,13 @@ public class Fase extends JPanel implements ActionListener {
 		int aux[] = new int[INIMIGO];
 		this.inimigo = new ArrayList<Inimigo1>();
 
-		for (int i = 0; i < aux.length; i++) {
-			int x = (int) (Math.random() * 5050 + 1050);
+		for (int i = 0; i <= aux.length; i++) {
+			int x = (int) (Math.random() * 5150 + 1050);
 			int y = (int) ((Math.random() * 768) - (Math.random() * 350));
 			inimigo.add(new Inimigo1(x, y));
+
 		}
+
 	}
 
 	public void inicializaNebulas() {
@@ -103,6 +105,7 @@ public class Fase extends JPanel implements ActionListener {
 				if (tiro1.intersects(enemy)) {
 					ini.setVisivel(false);
 					tmpTiro.setVisivel(false);
+					StateGame.incluiPonto();
 				}
 			}
 
@@ -187,7 +190,7 @@ public class Fase extends JPanel implements ActionListener {
 	}
 
 	public void init() {
-		StateGame.getIntance();
+		StateGame.getInstance();
 		StateGame.inicializaJogo();
 	}
 

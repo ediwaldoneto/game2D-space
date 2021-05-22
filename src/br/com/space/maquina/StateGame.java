@@ -6,6 +6,7 @@ package br.com.space.maquina;
  */
 public class StateGame {
 
+	@SuppressWarnings("unused")
 	private static int vida;
 	private static int pontos;
 	private static boolean emJogo;
@@ -14,7 +15,7 @@ public class StateGame {
 	private StateGame() {
 	}
 
-	public static StateGame getIntance() {
+	public static StateGame getInstance() {
 		if (instance == null) {
 			instance = new StateGame();
 		}
@@ -28,16 +29,28 @@ public class StateGame {
 	}
 
 	public static void fimDeJogo() {
-		emJogo = false;
+		StateGame.emJogo = false;
 	}
 
 	public static boolean isEmJogo() {
 		return emJogo;
 	}
 
-	public static String obtemVida() {
-		String aux = String.valueOf(vida);
-		return aux;
+	public static String obtemPontos() {
+		int pt = 0;
+		pt += getPontos();
+		return String.valueOf(pt);
 	}
 
+	public static void incluiPonto() {
+		StateGame.pontos += 1;
+	}
+
+	protected static int getPontos() {
+		return pontos;
+	}
+
+	public static void statusTrue() {
+		StateGame.emJogo = true;
+	}
 }
