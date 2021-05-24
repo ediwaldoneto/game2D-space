@@ -1,17 +1,24 @@
 package br.com.space.util;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Properties;
 
+/**
+ * @author Neto
+ *
+ */
 public class Manipulador {
 
-	private static final String PATH = "C:\\Space\\";
-	private static final String NAME_PROP = "dados.properties";
+	private static String PROPERTIES = "dados.properties";
+	private static String PATH_INTERNO = "./src/dados/dados.properties";
+	private static String PATH_EXTERNO = System.getProperty("user.home") + File.separator + PROPERTIES;
 
 	private Manipulador() {
 
@@ -19,12 +26,17 @@ public class Manipulador {
 
 	private static Properties getPro() throws FileNotFoundException {
 
-		criaConfigDefault();
+		try {
+			criaConfigDefault();
+		} catch (IOException ex) {
+
+			ex.printStackTrace();
+		}
 
 		Properties properties = new Properties();
 		FileInputStream fileInputStream = new FileInputStream(
 
-				PATH + NAME_PROP);
+				PATH_EXTERNO);
 		try {
 			properties.load(fileInputStream);
 		} catch (IOException e) {
@@ -50,60 +62,23 @@ public class Manipulador {
 
 	}
 
-	private static void criaConfigDefault() {
-
-		File file = new File(PATH);
+	private static void criaConfigDefault() throws IOException {
+		File file = new File(PATH_EXTERNO);
 
 		if (!file.exists()) {
-			file.mkdir();
+			System.out.println("Manipulador.criaConfigDefault() -> Criando configuração inicial");
 
-			System.out.println("Manipulador.criaConfigDefault() :: As configurações do jogo não existem");
-			System.out.println("Manipulador.criaConfigDefault() :: Criando o Path = " + PATH);
+			InputStream in = new FileInputStream(PATH_INTERNO);
 
-			String path = PATH + NAME_PROP;
-			BufferedWriter bw = null;
-			FileWriter fw = null;
+			System.out.println("Manipulador.criaConfigDefault() :: Carregou path interno -> " + in);
 
-			System.out.println("Manipulador.criaConfigDefault() :: Criando o arquivo = " + NAME_PROP);
+			System.out.println("Manipulador.criaConfigDefault() :: Carregou path do sistema -> " + PATH_EXTERNO);
 
-			try {
+			Files.copy(in, Paths.get(PATH_EXTERNO), StandardCopyOption.REPLACE_EXISTING);
 
-				fw = new FileWriter(path, true);
-				bw = new BufferedWriter(fw);
-
-				bw.write("######### DADOS SPACE #########");
-				bw.write("\n");
-				bw.write("VELOCIDADE_INIMIGO = 6");
-				bw.write("\n");
-				bw.write("QUANTIDADE_INIMIGO = 300");
-				bw.write("\n");
-				bw.write("QTD_NEBULA = 20");
-				bw.write("\n");
-				bw.write("VELOCIDADE_NEBULA = 3");
-				bw.write("\n");
-				bw.write("VELOCIDADE_TIRO = 4");
-
-				System.out.println("Manipulador.criaConfigDefault() :: Arquivo default foi criado com sucesso");
-
-			} catch (Exception e) {
-
-				e.printStackTrace();
-			}
-
-			finally {
-				try {
-					if (bw != null) {
-						bw.close();
-					}
-					if (fw != null) {
-						fw.close();
-					}
-				} catch (Exception e2) {
-
-					e2.printStackTrace();
-				}
-			}
-
+			System.out.println("Manipulador.criaConfigDefault() -> Fim configuração inicial");
 		}
+
 	}
+
 }
