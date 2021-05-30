@@ -19,7 +19,7 @@ import br.com.space.util.log.Log;
 public class Manipulador {
 
 	private static String PROPERTIES = "dados.properties";
-	private static String PATH_INTERNO = "res\\dados\\dados.properties";
+	private static String PATH_INTERNO = "/dados/properties/dados.properties";
 	private static String PATH_EXTERNO = System.getProperty("user.home") + File.separator + PROPERTIES;
 
 	private Manipulador() {
@@ -65,13 +65,7 @@ public class Manipulador {
 		if (!file.exists()) {
 			Log.writeLog("Manipulador.criaConfigDefault() -> Criando configuração");
 
-			InputStream in = null;
-			try {
-				in = new FileInputStream(PATH_INTERNO);
-			} catch (FileNotFoundException e) {
-				Log.writeLog("Manipulador.criaConfigDefault() -> " + e);
-				e.printStackTrace();
-			}
+			InputStream in = Manipulador.class.getResourceAsStream(PATH_INTERNO);
 
 			Log.writeLog("Manipulador.criaConfigDefault() :: Montou path interno -> " + in);
 
@@ -89,5 +83,4 @@ public class Manipulador {
 
 	}
 
-	
-}    
+}

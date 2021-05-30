@@ -31,7 +31,7 @@ public class Jogador {
 
 	public void load() {
 
-		ImageIcon img = new ImageIcon("./src/img/jogador.png");
+		ImageIcon img = new ImageIcon(Jogador.class.getResource("/dados/image/jogador.png"));
 		imgJogador = img.getImage();
 
 		this.altura = imgJogador.getHeight(null);
