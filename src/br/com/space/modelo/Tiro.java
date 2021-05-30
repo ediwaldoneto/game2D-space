@@ -34,7 +34,7 @@ public class Tiro {
 
 	public void load() {
 
-		ImageIcon imagem = new ImageIcon("./src/img/tiro1.png");
+		ImageIcon imagem = new ImageIcon(Tiro.class.getResource("/dados/image/tiro1.png"));
 		img = imagem.getImage();
         
 		this.altura = img.getHeight(null);

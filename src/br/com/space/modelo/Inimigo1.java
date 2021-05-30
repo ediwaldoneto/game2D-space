@@ -23,7 +23,7 @@ public class Inimigo1 {
 
 	public void load() {
 		
-		ImageIcon referencia = new ImageIcon("./src/img/inimigo.png");
+		ImageIcon referencia = new ImageIcon(Inimigo1.class.getResource("/dados/image/inimigo.png"));
 		imagem = referencia.getImage();
 
 		this.largura = imagem.getWidth(null);
