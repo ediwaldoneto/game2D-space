@@ -25,7 +25,7 @@ public class Audio {
 	 * @param repeat
 	 * @param volume
 	 */
-	public static synchronized void play(String pFile, boolean repeat, Float volume) {
+	public static void play(String pFile, boolean repeat, Float volume) {
 
 		try {
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(pFile).getAbsoluteFile());
@@ -60,7 +60,6 @@ public class Audio {
 
 	public static void setVolume(Float volume) {
 		Float defaul = 0.9f;
-
 		if (volume < 0f || volume > 1f) {
 			volume = defaul;
 			System.out.println("Audio.setVolume() :: Volume invalido, atribuido valor default " + defaul);

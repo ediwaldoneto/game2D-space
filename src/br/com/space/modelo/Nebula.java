@@ -24,7 +24,7 @@ public class Nebula {
 	}
 
 	public void load() {
-		ImageIcon referencia = new ImageIcon("res\\Nebula2.png");
+		ImageIcon referencia = new ImageIcon("./src/img/Nebula2.png");
 		imagem = referencia.getImage();
 
 		this.largura = imagem.getWidth(null);

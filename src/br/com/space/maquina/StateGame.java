@@ -1,5 +1,7 @@
 package br.com.space.maquina;
 
+import br.com.space.util.log.Log;
+
 /**
  * @author Neto
  *
@@ -10,30 +12,28 @@ public class StateGame {
 	private static int vida;
 	private static int pontos;
 	private static boolean emJogo;
-	private static StateGame instance;
 
 	private StateGame() {
-	}
-
-	public static StateGame getInstance() {
-		if (instance == null) {
-			instance = new StateGame();
-		}
-		return instance;
 	}
 
 	public static void inicializaJogo() {
 		vida = 1;
 		pontos = 0;
 		emJogo = true;
+		Log.writeLog(
+				"StateGame :: inicializaJogo :: -> " + " vida = " + vida 
+				+ " pontos = " + pontos + " emJogo = " + emJogo);
 	}
 
 	public static void fimDeJogo() {
 		StateGame.emJogo = false;
+
 	}
 
 	public static boolean isEmJogo() {
+
 		return emJogo;
+
 	}
 
 	public static String obtemPontos() {
