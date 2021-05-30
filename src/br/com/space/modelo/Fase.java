@@ -8,12 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 import br.com.space.maquina.StateGame;
 import br.com.space.util.Manipulador;
 import br.com.space.util.TecladoAdapter;
+import br.com.space.util.log.Log;
 
 public class Fase extends JPanel implements ActionListener {
 
@@ -28,23 +31,25 @@ public class Fase extends JPanel implements ActionListener {
 	private static int NEBULA = Manipulador.getValor("QTD_NEBULA");
 
 	public Fase() {
-
+		Log.writeLog("Inicio Fase");
 		setFocusable(true);
 		setDoubleBuffered(false);
-
-		ImageIcon ref = new ImageIcon("res\\back.png");
+		ImageIcon ref = new ImageIcon("res//imagem//back.png");
 		background = ref.getImage();
-
+				
 		jogador = new Jogador();
 		jogador.load();
+
+		Log.writeLog("Fase :: jogador -> " + jogador);
 
 		addKeyListener(new TecladoAdapter(this.jogador));
 
 		init();
 		timer = new Timer(9, this);
 		timer.start();
-		
+
 		iniciarInimigos();
+
 		inicializaNebulas();
 
 	}
@@ -144,8 +149,10 @@ public class Fase extends JPanel implements ActionListener {
 				graphics2d.drawImage(in.getImagem(), in.getX(), in.getY(), this);
 			}
 		} else {
-			ImageIcon gameOver = new ImageIcon("res\\gameOver.png");
+
+			ImageIcon gameOver = new ImageIcon("./src/img/gameOver.png");
 			graphics2d.drawImage(gameOver.getImage(), 0, 0, null);
+
 		}
 
 		graphics.dispose();
@@ -182,16 +189,20 @@ public class Fase extends JPanel implements ActionListener {
 				in.update();
 			} else {
 				inimigo.remove(j);
+
 			}
 
 		}
+
 		verificaColisao();
+
 		repaint();
 	}
 
 	public void init() {
-		StateGame.getInstance();
+		Log.writeLog("Fase :: init");
 		StateGame.inicializaJogo();
+
 	}
 
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+
 import br.com.space.Container;
 import br.com.space.maquina.StateGame;
 
@@ -30,7 +31,7 @@ public class Jogador {
 
 	public void load() {
 
-		ImageIcon img = new ImageIcon("res\\jogador.png");
+		ImageIcon img = new ImageIcon("./src/img/jogador.png");
 		imgJogador = img.getImage();
 
 		this.altura = imgJogador.getHeight(null);
@@ -75,8 +76,6 @@ public class Jogador {
 		}
 
 		if (evento == KeyEvent.VK_F3) {
-
-			// new Container();
 
 		}
 

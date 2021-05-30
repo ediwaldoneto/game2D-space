@@ -23,7 +23,7 @@ public class Container extends JFrame {
 	public Container() throws HeadlessException {
 
 		add(new Fase());
-		this.setTitle("Space");
+		this.setTitle("Space v 2.0");
 		this.setSize(1020, 720);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -65,12 +65,5 @@ public class Container extends JFrame {
 //		fileMenu.add(exitAction);
 
 	}
-
-//	public static void main(String[] args) throws IOException {
-//
-//		// 
-//		new Container();
-//
-//	}
 
 }
