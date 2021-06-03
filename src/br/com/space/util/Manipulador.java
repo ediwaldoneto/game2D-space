@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Properties;
 
+import br.com.space.maquina.Constants;
 import br.com.space.util.log.Log;
 
 /**
@@ -18,27 +19,22 @@ import br.com.space.util.log.Log;
  */
 public class Manipulador {
 
-	private static String PROPERTIES = "dados.properties";
-	private static String PATH_INTERNO = "/dados/properties/dados.properties";
-	private static String PATH_EXTERNO = System.getProperty("user.home") + File.separator + PROPERTIES;
-
 	private Manipulador() {
 
 	}
 
 	private static Properties getPro() throws FileNotFoundException {
 
-		criarConfigDefault();
-
 		Properties properties = new Properties();
 		FileInputStream fileInputStream = new FileInputStream(
 
-				PATH_EXTERNO);
+				Constants.PATH_OS + File.separator + Constants.PASTA_SYSTEMA + File.separator
+						+ Constants.AQUIVO_PROPERTIES);
 		try {
 			properties.load(fileInputStream);
 		} catch (IOException e) {
 			Log.writeLog("Manipulador.criarConfigDefault.getPro() " + e);
-			e.printStackTrace();
+
 		}
 		return properties;
 	}
@@ -50,7 +46,7 @@ public class Manipulador {
 			properties = getPro();
 		} catch (FileNotFoundException e) {
 			Log.writeLog("Manipulador.criarConfigDefault.getValor() " + e);
-			e.printStackTrace();
+
 		}
 
 		int result = Integer.valueOf(properties.getProperty(valor));
@@ -59,23 +55,26 @@ public class Manipulador {
 
 	}
 
-	private static void criarConfigDefault() {
-		File file = new File(PATH_EXTERNO);
+	public static void criarConfigDefault() {
+		String caminho = Constants.PATH_OS + File.separator + Constants.PASTA_SYSTEMA;
+		File file = new File(caminho);
 
 		if (!file.exists()) {
+			file.mkdir();
 			Log.writeLog("Manipulador.criaConfigDefault() -> Criando configuração");
 
-			InputStream in = Manipulador.class.getResourceAsStream(PATH_INTERNO);
+			InputStream in = Manipulador.class.getResourceAsStream(Constants.PATH_INTERNO);
 
 			Log.writeLog("Manipulador.criaConfigDefault() :: Montou path interno -> " + in);
 
 			Log.writeLog("Manipulador.criaConfigDefault() :: Montou path do sistema -> " + file);
 
 			try {
-				Files.copy(in, Paths.get(PATH_EXTERNO), StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(in, Paths.get(Constants.PATH_OS + File.separator + Constants.PASTA_SYSTEMA + File.separator
+						+ Constants.AQUIVO_PROPERTIES), StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
-				Log.writeLog("Manipulador.criaConfigDefault() -> " + e);
-				e.printStackTrace();
+				Log.writeLog("Manipulador.criaConfigDefault() -> " + e.getMessage());
+
 			}
 
 			Log.writeLog("Manipulador.criaConfigDefault() -> Fim configuração inicial dados.properties");

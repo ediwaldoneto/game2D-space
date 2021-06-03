@@ -60,19 +60,24 @@ public class Fase extends JPanel implements ActionListener {
 		int aux[] = new int[INIMIGO];
 		this.inimigo = new ArrayList<Inimigo1>();
 
+		Log.writeLog("Fase :: iniciarInimigos :: inimigo -> " + aux.length);
+
 		for (int i = 0; i <= aux.length; i++) {
 			int x = (int) (Math.random() * 5150 + 1050);
 			int y = (int) ((Math.random() * 768) - (Math.random() * 350));
 			inimigo.add(new Inimigo1(x, y));
-
 		}
 
 	}
 
 	public void inicializaNebulas() {
 
+		Log.writeLog("Fase :: inicializaNebulas");
+
 		int coordenadas[] = new int[NEBULA];
 		this.nebulas = new ArrayList<Nebula>();
+
+		Log.writeLog("Fase :: iniciarInimigos :: nebulas -> " + coordenadas.length);
 
 		for (int i = 0; i < coordenadas.length; i++) {
 			int x = (int) (Math.random() * 7025 + 1024);
@@ -95,6 +100,7 @@ public class Fase extends JPanel implements ActionListener {
 				jogador.setVisible(false);
 				ini.setVisivel(false);
 				StateGame.fimDeJogo();
+				
 			}
 		}
 
@@ -123,7 +129,7 @@ public class Fase extends JPanel implements ActionListener {
 		Graphics2D graphics2d = (Graphics2D) graphics;
 
 		if (StateGame.isEmJogo()) {
-
+			
 			graphics2d.drawImage(background, 0, 0, null);
 
 			for (int j = 0; j < nebulas.size(); j++) {
@@ -153,7 +159,7 @@ public class Fase extends JPanel implements ActionListener {
 
 			ImageIcon gameOver = new ImageIcon(Fase.class.getResource("/dados/image/gameOver.png"));
 			graphics2d.drawImage(gameOver.getImage(), 0, 0, null);
-
+			
 		}
 
 		graphics.dispose();

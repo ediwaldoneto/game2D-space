@@ -9,6 +9,8 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import br.com.space.util.log.Log;
+
 /**
  * @author Neto
  *
@@ -44,7 +46,7 @@ public class Audio {
 			}
 
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			System.out.println("Audio.tocarAudio() :: Erro ao reproduziar o audio ");
+			Log.writeLog("Audio.tocarAudio() :: Erro ao reproduziar o audio " + e);
 			e.printStackTrace();
 		}
 
@@ -62,7 +64,7 @@ public class Audio {
 		Float defaul = 0.9f;
 		if (volume < 0f || volume > 1f) {
 			volume = defaul;
-			System.out.println("Audio.setVolume() :: Volume invalido, atribuido valor default " + defaul);
+			Log.writeLog("Audio.setVolume() :: Volume invalido, atribuido valor default " + defaul);
 		}
 		FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		float range = gainControl.getMaximum() - gainControl.getMinimum();

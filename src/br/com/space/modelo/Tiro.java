@@ -24,7 +24,7 @@ public class Tiro {
 		this.x = x;
 		this.y = y;
 		this.isVisivel = true;
-		Audio.play(PATH_AUDIO, false, 0.8f);
+		//Audio.play(PATH_AUDIO, false, 0.8f);
 
 	}
 
