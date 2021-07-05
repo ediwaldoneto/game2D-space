@@ -8,7 +8,6 @@ import br.com.space.util.log.Log;
  */
 public class StateGame {
 
-	@SuppressWarnings("unused")
 	private static int vida;
 	private static int pontos;
 	private static boolean emJogo;

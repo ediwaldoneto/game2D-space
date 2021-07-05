@@ -5,20 +5,20 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import br.com.space.maquina.StateGame;
 import br.com.space.modelo.Fase;
-import br.com.space.util.som.Audio;
 
 public class Container extends JFrame {
 
 	private static final long serialVersionUID = 2271094873264268584L;
 	private JLabel jLabel;
 	private Timer timer;
-	private static String PATH_AUDIO = "res\\som\\playgame.wav";
+	//private static String PATH_AUDIO = Container.class.getResource("/dados/som/playgame.wav").getPath();
 
 	public Container() throws HeadlessException {
 
@@ -33,7 +33,7 @@ public class Container extends JFrame {
 		jLabel = new JLabel("0");
 		jLabel.setFont(new Font(jLabel.getName(), Font.PLAIN, 20));
 		this.add(jLabel, BorderLayout.PAGE_END);
-		Audio.play(PATH_AUDIO, true, 1f);
+		//Audio.play(PATH_AUDIO, true, 1f);
 
 		ActionListener actionListener = new ActionListener() {
 
